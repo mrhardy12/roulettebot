@@ -145,6 +145,7 @@ def main():
                               players, former_players, round_number)
         if new_round.lower() == "n":
             print_final_results(players, former_players, round_number)
+            print()
             sys.exit()
         else:
             round_number += 1
@@ -241,11 +242,11 @@ def print_game_status(players, former_players, round_number):
     for player in former_players.values():
         print(f"{player.name} had {player.chips} chips, " \
               f"and has left the table or run out of chips.")
-    print("\n")
+    print()
 
 
 def print_final_results(players, former_players, round_number):
-    print(f"Game has ended on round {round_number}! Thank you for playing!\n")
+    print(f"\nGame has ended on round {round_number}! Thank you for playing!\n")
     for player in players.values():
         print(f"{player.name} ends with {player.chips} chips!")
     for player in former_players.values():
