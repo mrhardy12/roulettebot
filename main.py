@@ -124,7 +124,7 @@ def main():
                   players, former_players, round_number)
         result = spin_wheel()
         get_input(f"\nThe wheel landed on {result}! " \
-                  f"Press Enter to payout bets.",
+                  f"Press Enter to payout bets. ",
                   players, former_players, round_number)
         print(f"\nRound {round_number} bet results!\n")
 
@@ -234,13 +234,14 @@ def print_bet_status(players, round_number):
 
 
 def print_game_status(players, former_players, round_number):
-    print(f"Game is on round {round_number}")
+    print(f"\nGame is on round {round_number}.\n")
     for player in players.values():
         print(f"{player.name} has {player.chips} chips, " \
               f"and is still playing.")
     for player in former_players.values():
         print(f"{player.name} had {player.chips} chips, " \
               f"and has left the table or run out of chips.")
+    print("\n")
 
 
 def print_final_results(players, former_players, round_number):
@@ -249,7 +250,7 @@ def print_final_results(players, former_players, round_number):
         print(f"{player.name} ends with {player.chips} chips!")
     for player in former_players.values():
         if player.chips != 0:
-            print(f"{player.name} left the table with {player.chips} chips" \
+            print(f"{player.name} left the table with {player.chips} chips " \
                   f"remaining.")
         else:
             print(f"{player.name} ran out of chips and must pay off their " \
@@ -307,7 +308,11 @@ def validate_bet_number(number, function_name):
 def get_column_bet(column_num):
     if not validate_bet_number(column_num, "column"):
         return []
-    column_index = column_num - 1
+    if column_num % 3 == 0:
+        new_column_num = 3
+    else:
+        new_column_num = column_num % 3
+    column_index = new_column_num - 1
     column_numbers = []
     for row in table:
         column_numbers.append(row[column_index])
